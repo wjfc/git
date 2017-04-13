@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title><%= htmlWebpackPlugin.options.title || 'Yedian Merchant'%></title>
+  <link rel="shortcut icon" href="https://s3.amazonaws.com/storm-fm/favicon.png">
+  <% if (htmlWebpackPlugin.options.mobile) { %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  <% } %>
+  <% if (htmlWebpackPlugin.options.baseHref) { %>
+    <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
+  <% } %>
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+  <% } %>
+  <style>
+    .pagination > li.active > .page-link {
+      background-color: #f84747;
+    }
+  </style>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EF2d57281d8929f7e8112d3b873130d3"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
+</head>
+<body>
+  <% if (htmlWebpackPlugin.options.appMountId) { %>
+    <div id="<%= htmlWebpackPlugin.options.appMountId %>"></div>
+  <% } %>
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+  <% } %>
+
+  <% if (htmlWebpackPlugin.options.devServer) { %>
+    <script src="<%= htmlWebpackPlugin.options.devServer%>/webpack-dev-server.js"></script>
+  <% } %>
+</body>
+</html>
